@@ -1,0 +1,35 @@
+{
+  "imports": {
+    "ol-layerswitcher": "https://cdn.jsdelivr.net/npm/ol-layerswitcher/+esm",
+    "hono": "jsr:@hono/hono@^4.4.2"
+  },
+  "tasks": {
+    "start": "deno serve --watch  -A main.ts",
+    "esm:add": "deno run -A https://esm.sh/v135 add",
+    "esm:update": "deno run -A https://esm.sh/v135 update",
+    "esm:remove": "deno run -A https://esm.sh/v135 remove"
+  },
+  "compilerOptions": {
+    "jsx": "precompile",
+    "jsxImportSource": "hono/jsx"
+  },
+  "scopes": {
+    "https://esm.sh/": {
+      "color-rgba": "https://esm.sh/color-rgba@3.0.0",
+      "color-space": "https://esm.sh/color-space@2.0.1",
+      "earcut": "https://esm.sh/earcut@2.2.4",
+      "geotiff": "https://esm.sh/geotiff@2.1.3",
+      "util": "https://esm.sh/ol/util.js",
+      "pbf": "https://esm.sh/pbf@3.2.1",
+      "rbush": "https://esm.sh/rbush@3.0.1"
+    },
+    "https://esm.sh/v135/": {
+      "color-rgba": "https://esm.sh/v135/color-rgba@3.0.0",
+      "color-space": "https://esm.sh/v135/color-space@2.0.1",
+      "earcut": "https://esm.sh/v135/earcut@2.2.4",
+      "geotiff": "https://esm.sh/v135/geotiff@2.1.3",
+      "pbf": "https://esm.sh/v135/pbf@3.2.1",
+      "rbush": "https://esm.sh/v135/rbush@3.0.1"
+    }
+  }
+}
