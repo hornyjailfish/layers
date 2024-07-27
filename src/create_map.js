@@ -5,6 +5,9 @@ import LayerGroup from "https://esm.sh/ol/layer/Group.js";
 import { Vector as VectorSource } from "https://esm.sh/ol/source?dts";
 import GeoJSON from "https://esm.sh/ol/format/GeoJSON?dts";
 
+import { initDb, closeDb, getDb, json } from "./surreal.js";
+
+
 const default_style = new Style({
   stroke: new Stroke({
     color: [69, 69, 69, 1],
@@ -53,7 +56,7 @@ function add_shared_walls() {
       url: shared.walls,
       format: new GeoJSON(),
     }),
-    style: function (feature) {
+    style: function(feature) {
       return styles.walls;
     },
   });
@@ -62,7 +65,7 @@ function add_shared_walls() {
 const layers = {
   level0: {
     walls: "static/-1w.geojson",
-    shops: "static/-1sh.geojson",
+    shops: "static/-1shops.geojson",
     // markers: {},
   },
   level1: {
@@ -81,7 +84,7 @@ const layers = {
  * @param {number} visible_by_default
  * what lvl showed at start
  */
-function load(visible_by_default) {
+async function load(visible_by_default) {
   // const levels = new Group({
   //   // A layer must have a title to appear in the layerswitcher
   //   title: "Base",
@@ -197,13 +200,52 @@ function load(visible_by_default) {
     ],
   });
 
+  const db_test = new VectorSource({
+    format: new GeoJSON(),
+    loader: async (extent, resolution, projection, success, failure) => {
+      // const data = await db.query("select features from geo where id = geo:9u68tt9hfmnx83u2smv3");
+      const body = await fetch("http://127.0.0.1:8000/key/geo", { method: "GET",  headers: {
+        "Accept": "application/json",
+        "NS": "ns",
+        "DB": "db"
+      }});
+      const data = await body.json();
+      const result = data[0].result;
+      // const t = json(data);
+      //
+      // const data = await db.select("geo");
+
+      const onError = function () {
+        db_test.removeLoadedExtent(extent);
+        failure();
+      };
+
+      const features = db_test.getFormat().readFeature(result[0]);
+      features.setStyle(default_style);
+      console.log(result,features);
+      db_test.addFeatures(features);
+      success(features);
+    },
+    // url: layers.level0.walls,
+  });
+
+  const db = await initDb();
+  const test_loader = new VectorLayer({
+    // title: "Walls",
+    visible: true,
+    // type: "base",
+    // opacity: 0.5,
+    style: styles.shops,
+    source: db_test,
+  });
+
   const levels = new LayerGroup({
     title: "Levels",
     fold: "close",
     combine: true,
     // type: "base",
     visible: true,
-    layers: [lvl0, lvl1, lvl2],
+    layers: [test_loader,add_shared_walls()],
     // add_shared_walls(),
   });
   return levels;
