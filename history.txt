@@ -50,3 +50,52 @@ select * from sale_fields
 UPDATE sale_fields CONTENT {geometry: { type: 'Polygon', coordinates: [[[36.77269829083, 55.66466213383], [36.77269384177, 55.6513182831], [36.8068593987, 55.65131451768], [36.8068593987, 55.66466213383], [36.77269829083, 55.66466213383]]] },properties: NULL,type: 'Feature'};
 UPDATE sale_fields:123 CONTENT {geometry: { type: 'Polygon', coordinates: [[[36.77269829083, 55.66466213383], [36.77269384177, 55.6513182831], [36.8068593987, 55.65131451768], [36.8068593987, 55.66466213383], [36.77269829083, 55.66466213383]]] },properties: NULL,type: 'Feature'};
 select * from sale_fields
+ls
+ns
+select * from levels
+test
+select * from levels
+ns
+select * from levels
+tables
+table
+ls
+define table geo
+select * from geo
+insert into geo {geometry: { type: 'Polygon', coordinates: [[[36.77269829083, 55.66466213383], [36.77269384177, 55.6513182831], [36.8068593987, 55.65131451768], [36.8068593987, 55.66466213383], [36.77269829083, 55.66466213383]]] },properties: NULL,type: 'Feature'};
+select * from geo
+update geo set properties = {}
+select * from geo
+select * from levels
+select * from geo
+select * from levels
+select value id from levels
+select value id from geo
+select id from geo
+select geometries from geo
+select geometry from geo
+select geometry.coordinates from geo
+select coordinates from geo
+select coordinates from geo.geometry
+select value geometry.coordinates from geo
+select geometry.coordinates from geo
+select geometry from geo
+select * from geo
+insert into geo { geometry: { type: 'Polygon', coordinates: [[[36.77269829083, 55.66466213383], [36.77269384177, 55.6513182831], [36.8068593987, 55.65131451768], [36.8068593987, 55.66466213383], [36.77269829083, 55.66466213383]]] }, properties: {}, type: 'Feature' }
+select * from geo
+version
+select * from geo
+insert into geo {features: [{geometry: { type: 'Polygon', coordinates: [[[34.2841947289, 56.49072328377], [34.28419505906, 55.66514736176], [35.81123340192, 55.66514736176], [35.8112360034, 56.41799692029], [35.62090228611, 56.41799548133], [35.62089906523, 56.56678694104], [35.71986718218, 56.56680625678], [35.71971245604, 56.64797034674], [35.21980431142, 56.64791518007], [35.21977352723, 56.49057576477], [34.28434484092, 56.49072362572], [34.2841947289, 56.49072328377]]] },properties: {test: '69420'},type: 'Feature'}],generator: 'JOSM',type: 'FeatureCollection'};
+select * from geo where id = j8innlhs5jq9fr1wrjgp
+select * from geo where id = geo:j8innlhs5jq9fr1wrjgp
+select features from geo where id = geo:j8innlhs5jq9fr1wrjgp
+select value features from geo where id = geo:j8innlhs5jq9fr1wrjgp
+insert into geo {features: [{geometry: { type: 'Polygon', coordinates: [[[34.2841947289, 56.49072328377], [34.28419505906, 55.66514736176], [35.81123340192, 55.66514736176], [35.8112360034, 56.41799692029], [35.62090228611, 56.41799548133], [35.62089906523, 56.56678694104], [35.71986718218, 56.56680625678], [35.71971245604, 56.64797034674], [35.21980431142, 56.64791518007], [35.21977352723, 56.49057576477], [34.28434484092, 56.49072362572], [34.2841947289, 56.49072328377]]] },properties: {test: '69420'},type: 'Feature'}],type: 'FeatureCollection'}
+select value features from geo
+exit
+close
+select * from geo where type="FeatureCollection"
+delete geo:9u68tt9hfmnx83u2smv3
+delete geo:j8innlhs5jq9fr1wrjgp
+select * from geo where type="FeatureCollection"
+select * from geo 

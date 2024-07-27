@@ -89,11 +89,12 @@ const lvl2 = new VectorLayer({
 // indoor_layers.push(lvl0);
 // indoor_layers.push(lvl1);
 // indoor_layers.push(lvl2);
-
+const levels = await lvls;
+// console.log(levels)
 const selected = new Collection();
 const select_interation = new Select({
   multi: false,
-  layers: [lvls],
+  layers: levels,
   condition: click,
   style: null,
   // filter: function (feature, layer) {
@@ -113,7 +114,7 @@ const select_interation = new Select({
 // I add this to window because it ez to debug
 window.rio = new Map({
   target: "canvas",
-  layers: lvls,
+  layers: [levels],
   view: new View({
     center: [
       4166564.476494392,
@@ -186,3 +187,4 @@ window.rio.addControl(arrows);
 //     window.rio.updateSize();
 //   });
 // });
+//
